@@ -8,4 +8,3 @@ if U.lower() in Admin:
     print("permssion given")
   else:
     print("permission denied")
-    #change
