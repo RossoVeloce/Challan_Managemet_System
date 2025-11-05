@@ -1,11 +1,10 @@
-#Admin Identification sys
+# Admin Identification system
 print("Hello, World!")
-Admin = {"apoorva":"Apass","himanshu":"Bpass"}
+Admin = {"apoorva": "Apass", "himanshu": "Bpass"}
 U = input("Enter Username ")
 if U.lower() in Admin:
   P = input("enter Password ")
   if P == (Admin[U.lower()]):
-    print("permssion given")
+    print("permission given")
   else:
     print("permission denied")
-    #change
