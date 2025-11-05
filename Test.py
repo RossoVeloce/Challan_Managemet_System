@@ -12,3 +12,7 @@ if U.lower() in Admin:
     print("permission given")
   else:
     print("permission denied")
+
+def challancheck():
+  Reg = input("Enter Vehicle Number")
+  
