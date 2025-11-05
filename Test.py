@@ -1,4 +1,4 @@
-#Imports
+# Imports
 import mysql.connector
 # Admin Identification sys
 print("Hello, World!")
