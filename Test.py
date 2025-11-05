@@ -1,4 +1,4 @@
-#Admin Identification system
+#Admin Identification sys
 print("Hello, World!")
 Admin = {"apoorva":"Apass","himanshu":"Bpass"}
 U = input("Enter Username ")
@@ -8,5 +8,4 @@ if U.lower() in Admin:
     print("permssion given")
   else:
     print("permission denied")
-
-hello
+    #change
