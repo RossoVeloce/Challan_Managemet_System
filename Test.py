@@ -1,7 +1,6 @@
 # Imports
 import mysql.connector
 # Admin Identification sys
-# Admin Identification sys
 print("Hello hitmanshu")
 print("Hello, World!")
 Admin = {"apoorva": "Apass", "himanshu": "Bpass"}
