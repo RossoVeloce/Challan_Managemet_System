@@ -1,5 +1,5 @@
 # Imports
-import mysql.connector
+import mysql.connector as m
 # Admin Identification sys
 print("Hello hitmanshu")
 print("Hello, World!")
@@ -14,4 +14,4 @@ if U.lower() in Admin:
 
 def challancheck():
   Reg = input("Enter Vehicle Number")
-  
+  db = m.connect(localhost="host",user="root",pwd="",database="_")
