@@ -20,7 +20,7 @@ def tablecheck():
     cur.execute('show tables')
     print("Tables Available:",end=" ")
     for i in cur:
-      print(i)
+      print(list(i),end='')
   except:
     print("Connection failed !!")
 tablecheck()
