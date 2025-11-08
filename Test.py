@@ -18,6 +18,7 @@ def tablecheck():
     print("Successfully connected :)")
     cur = db.cursor()
     cur.execute('show tables')
+    print("Tables Available:",end=" ")
     for i in cur:
       print(i)
   except:
