@@ -24,7 +24,6 @@ def tablecheck():
   except:
     print("Connection failed !!")
   
-tablecheck()
 def challancheck():
   #Reg = input("Enter Vehicle Number")
   try:
@@ -37,4 +36,16 @@ def challancheck():
       print(list(i))
   except:
     print("Connection failed !!")
-challancheck()
+#User Interface
+while True:
+  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check challans \n"))
+  if Opinion == 1:
+    tablecheck()
+    print() #formating
+    print() #formatting
+  elif Opinion == 2:
+    challancheck()
+    print() #formatting
+  else:
+    print("Exiting")
+    break
