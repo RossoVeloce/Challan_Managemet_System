@@ -23,4 +23,18 @@ def tablecheck():
       print(list(i),end='')
   except:
     print("Connection failed !!")
+  
 tablecheck()
+def challancheck():
+  #Reg = input("Enter Vehicle Number")
+  try:
+    db = m.connect(host="localhost",user="root",database="_")
+    print("Successfully connected :)")
+    cur = db.cursor()
+    cur.execute('select * from challans')
+    print("Challans:(Police View)")
+    for i in cur:
+      print(list(i))
+  except:
+    print("Connection failed !!")
+challancheck()
