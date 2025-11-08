@@ -11,6 +11,7 @@ if U.lower() in Admin:
     print("permission given")
   else:
     print("permission denied")"""
+
 def tablecheck():
   #Reg = input("Enter Vehicle Number")
   try:
@@ -36,6 +37,7 @@ def challancheck():
       print(list(i))
   except:
     print("Connection failed !!")
+
 #User Interface
 while True:
   Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check challans \n"))
