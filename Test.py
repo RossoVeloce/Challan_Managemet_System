@@ -10,8 +10,10 @@ if U.lower() in Admin:
   if P == (Admin[U.lower()]):
     print("permission given")
   else:
-    print("permission denied")"""
+    print("permission denied")
 
+ADD new values to table using:
+INSERT INTO `challans` (`Vehicle ID`, `Driver ID`, `Pending Challans`, `Past Challans`) VALUES ('0987654321', '1000000000', '7', '3') """
 def tablecheck():
   #Reg = input("Enter Vehicle Number")
   try:
@@ -31,8 +33,26 @@ def challancheck():
     db = m.connect(host="localhost",user="root",database="_")
     print("Successfully connected :)")
     cur = db.cursor()
+    t = '*'
     cur.execute('select * from challans')
-    print("Challans:(Police View)")
+    print("Challans:")
+    for i in cur:
+      print(list(i))
+  except:
+    print("Connection failed !!")
+
+def specificcheck():
+  Reg = str(input("Enter Vehicle Number"))
+  try:
+    db = m.connect(host="localhost",user="root",database="_")
+    print("Successfully connected :)")
+    cur = db.cursor()
+    Reg = "'" + Reg + "'"
+    Reg = "SELECT * FROM `challans` WHERE`Vehicle ID`="+Reg
+    #print (type(Reg)) --Error checking
+    #print(Reg) --Error checking 
+    cur.execute(Reg)
+    print("Challans:")
     for i in cur:
       print(list(i))
   except:
@@ -40,13 +60,16 @@ def challancheck():
 
 #User Interface
 while True:
-  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check challans \n"))
+  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans"))
   if Opinion == 1:
     tablecheck()
     print() #formating
     print() #formatting
   elif Opinion == 2:
     challancheck()
+    print() #formatting
+  elif Opinion == 3:
+    specificcheck()
     print() #formatting
   else:
     print("Exiting")
