@@ -28,7 +28,6 @@ def tablecheck():
     print("Connection failed !!")
   
 def challancheck():
-  #Reg = input("Enter Vehicle Number")
   try:
     db = m.connect(host="localhost",user="root",database="_")
     print("Successfully connected :)")
@@ -48,9 +47,7 @@ def specificcheck():
     print("Successfully connected :)")
     cur = db.cursor()
     Reg = "'" + Reg + "'"
-    Reg = "SELECT * FROM `challans` WHERE`Vehicle ID`="+Reg
-    #print (type(Reg)) --Error checking
-    #print(Reg) --Error checking 
+    Reg = "SELECT * FROM `challans` WHERE`Vehicle ID`="+Reg 
     cur.execute(Reg)
     print("Challans:")
     for i in cur:
@@ -60,7 +57,7 @@ def specificcheck():
 
 #User Interface
 while True:
-  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans"))
+  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n"))
   if Opinion == 1:
     tablecheck()
     print() #formating
