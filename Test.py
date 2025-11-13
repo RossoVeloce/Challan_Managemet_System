@@ -32,7 +32,6 @@ def challancheck():
     db = m.connect(host="localhost",user="root",database="_")
     print("Successfully connected :)")
     cur = db.cursor()
-    t = '*'
     cur.execute('select * from challans')
     print("Challans:")
     for i in cur:
@@ -41,7 +40,7 @@ def challancheck():
     print("Connection failed !!")
 
 def specificcheck():
-  Reg = str(input("Enter Vehicle Number"))
+  Reg = str(input("Enter Vehicle Number: "))
   try:
     db = m.connect(host="localhost",user="root",database="_")
     print("Successfully connected :)")
