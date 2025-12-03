@@ -45,8 +45,7 @@ def specificcheck():
     db = m.connect(host="localhost",user="root",database="_")
     print("Successfully connected :)")
     cur = db.cursor()
-    Reg = "'" + Reg + "'"
-    Reg = "SELECT * FROM `challans` WHERE`Vehicle ID`="+Reg 
+    Reg = "SELECT * FROM `challans` WHERE`Vehicle ID`= '{}'".format(Reg)
     cur.execute(Reg)
     print("Challans:")
     for i in cur:
