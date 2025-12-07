@@ -123,6 +123,11 @@ def removechallan():
     db = m.connect(host="localhost",user="root",database="_")
     print("Successfully connected :)")
     cur = db.cursor()
+    Reg = "SELECT * FROM `challaninfo`"
+    cur.execute(Reg)
+    print("Vehicle ID","\tChallan ID","\tReason","\tMode","\tStatus")
+    for i in cur:
+      print(list(i))
     M = int(input("Enter Challan ID: "))
     Reg = "UPDATE challaninfo SET Status= 'INACTIVE' WHERE `Challan_ID` = '{}';".format(M)
     cur.execute(Reg)
@@ -143,7 +148,7 @@ def removechallan():
 
 #User Interface
 while True:
-  Opinion = input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n")
+  Opinion = input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n ")
   if Opinion == '1':
     tablecheck()
     print() #formating
