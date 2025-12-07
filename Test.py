@@ -36,10 +36,10 @@ def tablecheck():
     for i in cur:
       print(list(i),end='')
 
-    input()
+    input("\nPress Enter to continue: ")
   except:
     print("Connection failed !!")
-    input()
+    input("Press Enter to continue: ")
 
 def challancheck():
   try:
@@ -51,10 +51,10 @@ def challancheck():
     for i in cur:
       print(list(i))
 
-    input()
+    input("\nPress Enter to continue: ")
   except:
     print("Connection failed !!")
-    input()
+    input("\nPress Enter to continue: ")
 
 def specificcheck():
   Reg = str(input("Enter Vehicle Number: "))
@@ -68,10 +68,10 @@ def specificcheck():
     for i in cur:
       print(list(i))
 
-    input()
+    input("\nPress Enter to continue: ")
   except:
     print("Connection failed !!")
-    input()
+    input("\nPress Enter to continue: ")
 
 
 def add_chalan():
@@ -97,7 +97,7 @@ def add_chalan():
         val.append(input(i))
     val = tuple(val)
     print(f"New challan details are: {val}")
-    input()
+    input("\nPress Enter to continue: ")
     bleh = (f"INSERT INTO `challaninfo` VALUES (%s, %s , %s, %s, 'ACTIVE');")
     cur.execute(bleh, val)
     val = val[0]
@@ -113,10 +113,10 @@ def add_chalan():
     print("Challans:")
     for i in cur:
       print(list(i))
-    input()
+    input("\nPress Enter to continue: ")
   except:
     print("Connection failed !!")
-    input()
+    input("\nPress Enter to continue: ")
 
 def removechallan():
   try:
