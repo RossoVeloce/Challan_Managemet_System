@@ -132,7 +132,6 @@ def removechallan():
     for i in cur:
       M = list(i)
     M = M[0]
-    print (M,type(M))
     Reg = "UPDATE `challans` SET Pending_Challans= Pending_Challans-1,Past_Challans=Past_Challans+1 WHERE `Vehicle_ID` = '{}' AND Pending_Challans>0;".format(M)
     cur.execute(Reg)
     db.commit()
