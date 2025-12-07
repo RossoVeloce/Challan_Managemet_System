@@ -41,6 +41,7 @@ def tablecheck():
     print("Connection failed !!")
     input("Press Enter to continue: ")
 
+
 def challancheck():
   try:
     db = m.connect(host="localhost",user="root",database="_")
@@ -55,6 +56,7 @@ def challancheck():
   except:
     print("Connection failed !!")
     input("\nPress Enter to continue: ")
+
 
 def specificcheck():
   Reg = str(input("Enter Vehicle Number: "))
@@ -80,8 +82,8 @@ def add_chalan():
     db = m.connect(host="localhost", user="root", database="_")
     print("Successfully connected :)")
     cur = db.cursor()
-    cur.execute('select * from challaninfo')
-    print("Challans:")
+    cur.execute('select Vehicle_ID, Driver_Name from vehicle_details')
+    print("Vehicles are:")
     for i in cur:
       print(list(i))
     val = []
@@ -118,6 +120,7 @@ def add_chalan():
     print("Connection failed !!")
     input("\nPress Enter to continue: ")
 
+
 def removechallan():
   try:
     db = m.connect(host="localhost",user="root",database="_")
@@ -125,7 +128,7 @@ def removechallan():
     cur = db.cursor()
     Reg = "SELECT * FROM `challaninfo`"
     cur.execute(Reg)
-    print("Vehicle ID","\tChallan ID","\tReason","\tMode","\tStatus")
+    print("|Vehicle ID|","\t|Challan ID|","\t|Reason|","\t|Mode|","\t|Status|")
     for i in cur:
       print(list(i))
     M = int(input("Enter Challan ID: "))
@@ -145,6 +148,7 @@ def removechallan():
       #print(list(i))
   except:
     print("Connection failed !!")
+
 
 #User Interface
 while True:
