@@ -143,21 +143,21 @@ def removechallan():
 
 #User Interface
 while True:
-  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n "))
-  if Opinion == 1:
+  Opinion = input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n")
+  if Opinion == '1':
     tablecheck()
     print() #formating
     print() #formatting
-  elif Opinion == 2:
+  elif Opinion == '2':
     challancheck()
     print() #formatting
-  elif Opinion == 3:
+  elif Opinion == '3':
     specificcheck()
     print() #formatting
-  elif Opinion == 4:
+  elif Opinion == '4':
     removechallan()
     print() #formatting
-  elif Opinion == 5:
+  elif Opinion == '5':
     add_chalan()
     print()  # formatting
   else:
