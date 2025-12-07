@@ -63,6 +63,32 @@ def specificcheck():
   except:
     print("Connection failed !!")
 
+
+def add_chalan():
+  # Reg = input("Enter Vehicle Number")
+  try:
+    db = m.connect(host="localhost", user="root", database="_")
+    print("Successfully connected :)")
+    cur = db.cursor()
+    cur.execute('select * from challaninfo')
+    print("Challans:")
+    for i in cur:
+      print(list(i))
+    val = []
+    for i in ["Vehicle_ID: ", "Challan_ID: ", "Reason: ", "Mode: "]:
+      val.append(input(i))
+    val = tuple(val)
+    print(f"New challan details are: {val}")
+    bleh = ("INSERT INTO `challaninfo` VALUES (%s, %s, %s, %s, 'ACTIVE');")
+    cur.execute(bleh, val)
+    db.commit()
+    cur.execute('select * from challaninfo')
+    print("Challans:")
+    for i in cur:
+      print(list(i))
+  except:
+    print("Connection failed !!")
+
 def challanmodifier():
   try:
     db = m.connect(host="localhost",user="root",database="_")
@@ -94,7 +120,7 @@ def challanmodifier():
 
 #User Interface
 while True:
-  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Modify challan \n"))
+  Opinion = int(input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Modify challan \n 5.Add challan \n"))
   if Opinion == 1:
     tablecheck()
     print() #formating
@@ -108,6 +134,9 @@ while True:
   elif Opinion == 4:
     challanmodifier()
     print() #formatting
+  elif Opinion == 5:
+    add_chalan()
+    print()  # formatting
   else:
     print("Exiting")
     break
