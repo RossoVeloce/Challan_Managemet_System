@@ -1,5 +1,6 @@
 # Imports
 import mysql.connector as m
+import random
 # Admin Identification sys
 print("Hello hitmanshu")
 print("Hello, World!")
@@ -34,9 +35,12 @@ def tablecheck():
     print("Tables Available:",end=" ")
     for i in cur:
       print(list(i),end='')
+
+    input()
   except:
     print("Connection failed !!")
-  
+    input()
+
 def challancheck():
   try:
     db = m.connect(host="localhost",user="root",database="_")
@@ -46,8 +50,11 @@ def challancheck():
     print("Challans:")
     for i in cur:
       print(list(i))
+
+    input()
   except:
     print("Connection failed !!")
+    input()
 
 def specificcheck():
   Reg = str(input("Enter Vehicle Number: "))
@@ -60,8 +67,11 @@ def specificcheck():
     print("Challans:")
     for i in cur:
       print(list(i))
+
+    input()
   except:
     print("Connection failed !!")
+    input()
 
 
 def add_chalan():
@@ -75,11 +85,20 @@ def add_chalan():
     for i in cur:
       print(list(i))
     val = []
-    for i in ["Vehicle_ID: ", "Challan_ID: ", "Reason: ", "Mode: "]:
-      val.append(input(i))
+    random_10_digit_number = random.randint(1000000000, 9999999999)
+    modes = ["MANUAL", "AUTOMATED"]
+    mode = random.choice(modes)
+    for i in ["Vehicle_ID: ", "Chalan_ID: ", "Reason: ", "Mode: "]:
+      if i == "Chalan_ID: ":
+        val.append(str(random_10_digit_number))
+      elif i == "Mode: ":
+        val.append(str(mode))
+      else:
+        val.append(input(i))
     val = tuple(val)
     print(f"New challan details are: {val}")
-    bleh = ("INSERT INTO `challaninfo` VALUES (%s, %s, %s, %s, 'ACTIVE');")
+    input()
+    bleh = (f"INSERT INTO `challaninfo` VALUES (%s, %s , %s, %s, 'ACTIVE');")
     cur.execute(bleh, val)
     val = val[0]
     bleh = "SELECT COUNT(*) FROM challaninfo WHERE `Vehicle_ID`='{}' AND `Status`='ACTIVE';".format(val)
@@ -94,8 +113,10 @@ def add_chalan():
     print("Challans:")
     for i in cur:
       print(list(i))
+    input()
   except:
     print("Connection failed !!")
+    input()
 
 def removechallan():
   try:
