@@ -1,7 +1,7 @@
 # Imports
 import mysql.connector as m
 import random
-# Admin Identification sys
+#TO BE REMOVED Admin Identification sys 
 print("Hello hitmanshu")
 print("Hello, World!")
 """Admin = {"apoorva": "Apass", "himanshu": "Bpass"}
@@ -149,11 +149,19 @@ def removechallan():
   except:
     print("Connection failed !!")
 
+'''def add_vehicle():
+  try:
+    db = m.connect(host="localhost",user="root",database="_")
+    print("Successfully connected :)")
+    cur = db.cursor()
+    Reg = input("Enter vehicle number: ")
+
+  except:'''
 
 #User Interface
 while True:
-  Opinion = input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n ")
-  if Opinion == '1':
+  Opinion = input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n ")
+  if Opinion == '1' or Opinion.lower() == 'tablecheck':
     tablecheck()
     print() #formating
     print() #formatting
@@ -163,11 +171,14 @@ while True:
   elif Opinion == '3':
     specificcheck()
     print() #formatting
-  elif Opinion == '4':
+  elif Opinion == '4' or Opinion.lower() == 'remove challan':
     removechallan()
     print() #formatting
-  elif Opinion == '5':
+  elif Opinion == '5' or Opinion.lower() == 'add challan':
     add_chalan()
+    print()  # formatting
+  elif Opinion == '6' or Opinion.lower() == 'add vehicle':
+    print("Function pending")
     print()  # formatting
   else:
     print("Exiting")
