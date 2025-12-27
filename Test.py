@@ -48,9 +48,9 @@ def challancheck():
     print("Successfully connected :)")
     cur = db.cursor()
     cur.execute('select * from challans')
-    print("Challans:")
+    print("|Vehicle ID| |Driver ID| |Pending Challans| |Past Challans|")
     for i in cur:
-      print(list(i))
+      print(list(i)) #ISSUE: Format is wrong
 
     input("\nPress Enter to continue: ")
   except:
@@ -66,9 +66,9 @@ def specificcheck():
     cur = db.cursor()
     Reg = "SELECT * FROM `challans` WHERE`Vehicle_ID`= '{}'".format(Reg)
     cur.execute(Reg)
-    print("Challans:")
+    print("|Vehicle ID| |Driver ID| |Pending Challans| |Past Challans|")
     for i in cur:
-      print(list(i))
+      print(list(i)) #ISSUE: Formatting is wrong
 
     input("\nPress Enter to continue: ")
   except:
