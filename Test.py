@@ -149,14 +149,19 @@ def removechallan():
   except:
     print("Connection failed !!")
 
-'''def add_vehicle():
+def add_vehicle():
   try:
     db = m.connect(host="localhost",user="root",database="_")
     print("Successfully connected :)")
     cur = db.cursor()
-    Reg = input("Enter vehicle number: ")
-
-  except:'''
+    Reg = int(input("Enter vehicle number: "))
+    M = int(input("Enter Driver ID: "))
+    val = input("Enter Driver Name")
+    cur.execute("INSERT INTO `vehicle_details` (`Vehicle_ID`, `Driver_ID`, `Driver_Name`) VALUES ('{}', '{}', '{}')".format(Reg,M,val));
+    db.commit()
+  except:
+    print("Connection failed !!")
+    
 
 #User Interface
 while True:
@@ -178,6 +183,7 @@ while True:
     add_chalan()
     print()  # formatting
   elif Opinion == '6' or Opinion.lower() == 'add vehicle':
+    add_vehicle()
     print("Function pending")
     print()  # formatting
   else:
