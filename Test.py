@@ -158,7 +158,7 @@ def add_vehicle():
 
 #User Interface
 while True:
-  Opinion = input("\nWhat would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n ")
+  Opinion = input("\nWhat would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n -->")
   if Opinion == '1' or Opinion.lower() == 'tablecheck':
     tablecheck()
     print() #formating
