@@ -148,7 +148,7 @@ def add_vehicle():
     cur = db.cursor()
     Reg = int(input("Enter vehicle number: "))
     M = int(input("Enter Driver ID: "))
-    val = input("Enter Driver Name")
+    val = input("Enter Driver Name: ")
     cur.execute("INSERT INTO `vehicle_details` (`Vehicle_ID`, `Driver_ID`, `Driver_Name`) VALUES ('{}', '{}', '{}')".format(Reg,M,val))
     cur.execute("INSERT INTO `challans`(`Vehicle_ID`, `Driver_ID`, `Pending_Challans`, `Past_Challans`) VALUES ('{}','{}','0','0')".format(Reg,M))
     db.commit()
@@ -158,7 +158,7 @@ def add_vehicle():
 
 #User Interface
 while True:
-  Opinion = input("\nWhat would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n ")
+  Opinion = input("\nWhat would you like to do ? \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n ")
   if Opinion == '1' or Opinion.lower() == 'tablecheck':
     tablecheck()
     print() #formating
