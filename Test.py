@@ -2,13 +2,7 @@
 import mysql.connector as m
 import random
 print("Hello, World!")
-"""
-Create Table ChallanInfo
-(Vehicle_ID varchar(10)NOT NULL UNIQUE,
- Challan_ID char(10) NOT NULL UNIQUE,
- Reason varchar(255)NOT NULL UNIQUE,
- Mode ENUM('MANUAL','AUTOMATED');
-"""
+
 def check(Reg):
   db = m.connect(host="localhost",user="root",database="_")
   cur = db.cursor()
@@ -37,7 +31,6 @@ def tablecheck():
     print("Connection failed !!")
     input("Press Enter to continue: ")
 
-
 def challancheck():
   try:
     db = m.connect(host="localhost",user="root",database="_")
@@ -52,7 +45,6 @@ def challancheck():
   except:
     print("Connection failed !!")
     input("\nPress Enter to continue: ")
-
 
 def specificcheck():
   Reg = str(input("Enter Vehicle Number: "))
@@ -70,7 +62,6 @@ def specificcheck():
   except:
     print("Connection failed !!")
     input("\nPress Enter to continue: ")
-
 
 def add_chalan():
   # Reg = input("Enter Vehicle Number")
@@ -121,7 +112,6 @@ def add_chalan():
   except:
     print("Connection failed !!")
     input("\nPress Enter to continue: ")
-
 
 def removechallan():
   try:
