@@ -162,9 +162,9 @@ while True:
   if Opinion == '1' or Opinion.lower() == 'tablecheck':
     tablecheck()
     print() #formating
-  elif Opinion == '2':
+  elif Opinion == '2' or Opinion.lower()== 'check all challans':
     challancheck()
-  elif Opinion == '3':
+  elif Opinion == '3' or Opinion.lower()== 'check your challans':
     specificcheck()
   elif Opinion == '4' or Opinion.lower() == 'remove challan':
     removechallan()
