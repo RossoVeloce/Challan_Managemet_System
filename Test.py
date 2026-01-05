@@ -56,7 +56,7 @@ def specificcheck():
     cur.execute(Reg)
     print("|Vehicle ID| |Driver ID| |Pending Challans| |Past Challans|")
     for i in cur:
-      print(list(i)) #ISSUE: Formatting is wrong
+      print(list(i))
 
     input("\nPress Enter to continue: ")
   except:
@@ -64,7 +64,6 @@ def specificcheck():
     input("\nPress Enter to continue: ")
 
 def add_chalan():
-  # Reg = input("Enter Vehicle Number")
   try:
     db = m.connect(host="localhost", user="root", database="_")
     print("Successfully connected :)")
