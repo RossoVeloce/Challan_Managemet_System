@@ -1,29 +1,25 @@
 # Imports
 import mysql.connector as m
 import random
-#TO BE REMOVED Admin Identification sys 
-print("Hello hitmanshu")
 print("Hello, World!")
-"""Admin = {"apoorva": "Apass", "himanshu": "Bpass"}
-U = input("Enter Username ")
-if U.lower() in Admin:
-  P = input("enter Password ")
-  if P == (Admin[U.lower()]):
-    print("permission given")
-  else:
-    print("permission denied")
-
-ADD new values to table using:
-INSERT INTO `challans` (`Vehicle_ID`, `Driver _D`, `Pending_Challans`, `Past_Challans`) VALUES ('0987654321', '1000000000', '7', '3') 
-
+"""
 Create Table ChallanInfo
 (Vehicle_ID varchar(10)NOT NULL UNIQUE,
  Challan_ID char(10) NOT NULL UNIQUE,
  Reason varchar(255)NOT NULL UNIQUE,
- Mode ENUM('MANUAL','AUTOMATED'),
- FOREIGN KEY (Vehicle_ID) REFERENCES vehicle_details(Vehicle_ID)
- ON UPDATE CASCADE ON DELETE CASCADE);
+ Mode ENUM('MANUAL','AUTOMATED');
 """
+def check(Reg):
+  db = m.connect(host="localhost",user="root",database="_")
+  cur = db.cursor()
+  cur.execute('select vehicle_ID from vehicle_details')
+  M = []
+  for i in cur:
+    M.extend(list(i))
+  if str(Reg) in M:
+    return("Y")
+  else:
+    return("N")
 
 def tablecheck():
   #Reg = input("Enter Vehicle Number")
@@ -83,6 +79,7 @@ def add_chalan():
     print("Successfully connected :)")
     cur = db.cursor()
     cur.execute('select Vehicle_ID, Driver_Name from vehicle_details')
+    Reg = ""
     print("Vehicles are:")
     for i in cur:
       print(list(i))
@@ -96,25 +93,30 @@ def add_chalan():
       elif i == "Mode: ":
         val.append(str(mode))
       else:
-        val.append(input(i))
-    val = tuple(val)
-    print(f"New challan details are: {val}")
-    input("\nPress Enter to continue: ")
-    bleh = (f"INSERT INTO `challaninfo` VALUES (%s, %s , %s, %s, 'ACTIVE');")
-    cur.execute(bleh, val)
-    val = val[0]
-    bleh = "SELECT COUNT(*) FROM challaninfo WHERE `Vehicle_ID`='{}' AND `Status`='ACTIVE';".format(val)
-    cur.execute(bleh)
-    for i in cur:
-      M = list(i)
-    M = M[0]
-    bleh = "UPDATE `challans` SET Pending_Challans= {},Past_Challans=Past_Challans WHERE `Vehicle_ID` = '{}';".format(M,val)
-    cur.execute(bleh)
-    db.commit()
-    cur.execute('select * from challaninfo')
-    print("Challans:")
-    for i in cur:
-      print(list(i))
+        M = input(i)
+        Reg = Reg+check(M)
+        val.append(M)
+    if Reg == "YN" or Reg =="YY":
+      val = tuple(val)
+      print(f"New challan details are: {val}")
+      input("\nPress Enter to continue: ")
+      bleh = (f"INSERT INTO `challaninfo` VALUES (%s, %s , %s, %s, 'ACTIVE');")
+      cur.execute(bleh, val)
+      val = val[0]
+      bleh = "SELECT COUNT(*) FROM challaninfo WHERE `Vehicle_ID`='{}' AND `Status`='ACTIVE';".format(val)
+      cur.execute(bleh)
+      for i in cur:
+        M = list(i)
+      M = M[0]
+      bleh = "UPDATE `challans` SET Pending_Challans= {},Past_Challans=Past_Challans WHERE `Vehicle_ID` = '{}';".format(M,val)
+      cur.execute(bleh)
+      db.commit()
+      cur.execute('select * from challaninfo')
+      print("Challans:")
+      for i in cur:
+        print(list(i))
+    else:
+      print("Invalid Vehicle ID !")
     input("\nPress Enter to continue: ")
   except:
     print("Connection failed !!")
@@ -157,7 +159,8 @@ def add_vehicle():
     Reg = int(input("Enter vehicle number: "))
     M = int(input("Enter Driver ID: "))
     val = input("Enter Driver Name")
-    cur.execute("INSERT INTO `vehicle_details` (`Vehicle_ID`, `Driver_ID`, `Driver_Name`) VALUES ('{}', '{}', '{}')".format(Reg,M,val));
+    cur.execute("INSERT INTO `vehicle_details` (`Vehicle_ID`, `Driver_ID`, `Driver_Name`) VALUES ('{}', '{}', '{}')".format(Reg,M,val))
+    cur.execute("INSERT INTO `challans`(`Vehicle_ID`, `Driver_ID`, `Pending_Challans`, `Past_Challans`) VALUES ('{}','{}','0','0')".format(Reg,M))
     db.commit()
   except:
     print("Connection failed !!")
@@ -165,27 +168,20 @@ def add_vehicle():
 
 #User Interface
 while True:
-  Opinion = input("What would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n ")
+  Opinion = input("\nWhat would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n ")
   if Opinion == '1' or Opinion.lower() == 'tablecheck':
     tablecheck()
     print() #formating
-    print() #formatting
   elif Opinion == '2':
     challancheck()
-    print() #formatting
   elif Opinion == '3':
     specificcheck()
-    print() #formatting
   elif Opinion == '4' or Opinion.lower() == 'remove challan':
     removechallan()
-    print() #formatting
   elif Opinion == '5' or Opinion.lower() == 'add challan':
     add_chalan()
-    print()  # formatting
   elif Opinion == '6' or Opinion.lower() == 'add vehicle':
     add_vehicle()
-    print("Function pending")
-    print()  # formatting
   else:
     print("Exiting")
     break
