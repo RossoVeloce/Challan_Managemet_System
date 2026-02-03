@@ -1,48 +1,47 @@
 import mysql.connector
 
-db = mysql.connector.connect(
+conn = mysql.connector.connect(
     host="localhost",
     user="root",
-    database="practical"
-)
+    database="payroll")
 
-cur = db.cursor()
+cursor = conn.cursor()
 
 def show_employees():
-    cur.execute("""
+    cursor.execute("""
         SELECT e.emp_id, e.name, d.dept_name, e.base_salary,
                (e.base_salary + IFNULL(p.bonus,0) - IFNULL(p.deductions,0)) AS net_salary
         FROM employees e
         LEFT JOIN departments d ON e.dept_id = d.dept_id
         LEFT JOIN payroll p ON e.emp_id = p.emp_id
     """)
-    for row in cur.fetchall():
+    for row in cursor.fetchall():
         print(row)
 
 def update_salary():
     emp_id = int(input("Employee ID: "))
     salary = float(input("New base salary: "))
-    cur.execute(
+    cursor.execute(
         "UPDATE employees SET base_salary=%s WHERE emp_id=%s",
         (salary, emp_id)
-    )
-    db.commit()
+)
+    conn.commit()
 
 def delete_employee():
     emp_id = int(input("Employee ID to delete: "))
-    cur.execute("DELETE FROM payroll WHERE emp_id=%s", (emp_id,))
-    cur.execute("DELETE FROM employees WHERE emp_id=%s", (emp_id,))
-    db.commit()
+    cursor.execute("DELETE FROM payroll WHERE emp_id=%s", (emp_id,))
+    cursor.execute("DELETE FROM employees WHERE emp_id=%s", (emp_id,))
+    conn.commit()
 
-def drop_payroll_table():
-    cur.execute("DROP TABLE payroll")
-    db.commit()
+def add_employee():
+    cursor.execute("")
+    conn.commit()
 
 while True:
     print("\n1. Show Employees")
     print("2. Update Salary")
     print("3. Delete Employee")
-    print("4. Drop Payroll Table")
+    print("4. Add employee")
     print("5. Exit")
 
     choice = input("Choice: ")
@@ -54,7 +53,7 @@ while True:
     elif choice == "3":
         delete_employee()
     elif choice == "4":
-        drop_payroll_table()
+        add_employee()
     elif choice == "5":
         break
     else:
