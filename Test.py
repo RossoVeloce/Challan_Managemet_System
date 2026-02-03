@@ -56,7 +56,7 @@ def specificcheck():
     cur.execute(Reg)
     print("|Vehicle ID| |Driver ID| |Pending Challans| |Past Challans|")
     for i in cur:
-      print(list(i)) #ISSUE: Formatting is wrong
+      print(list(i))
 
     input("\nPress Enter to continue: ")
   except:
@@ -64,7 +64,6 @@ def specificcheck():
     input("\nPress Enter to continue: ")
 
 def add_chalan():
-  # Reg = input("Enter Vehicle Number")
   try:
     db = m.connect(host="localhost", user="root", database="_")
     print("Successfully connected :)")
@@ -148,7 +147,7 @@ def add_vehicle():
     cur = db.cursor()
     Reg = int(input("Enter vehicle number: "))
     M = int(input("Enter Driver ID: "))
-    val = input("Enter Driver Name")
+    val = input("Enter Driver Name: ")
     cur.execute("INSERT INTO `vehicle_details` (`Vehicle_ID`, `Driver_ID`, `Driver_Name`) VALUES ('{}', '{}', '{}')".format(Reg,M,val))
     cur.execute("INSERT INTO `challans`(`Vehicle_ID`, `Driver_ID`, `Pending_Challans`, `Past_Challans`) VALUES ('{}','{}','0','0')".format(Reg,M))
     db.commit()
@@ -158,13 +157,13 @@ def add_vehicle():
 
 #User Interface
 while True:
-  Opinion = input("\nWhat would you like to do ? (integer input) \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n -->")
+  Opinion = input("\nWhat would you like to do ? \n 1.Tablecheck \n 2.Check all challans \n 3.Check your challans \n 4.Remove challan \n 5.Add challan \n 6.Add vehicle \n Press any other key to exit\n ")
   if Opinion == '1' or Opinion.lower() == 'tablecheck':
     tablecheck()
     print() #formating
-  elif Opinion == '2':
+  elif Opinion == '2' or Opinion.lower()== 'check all challans':
     challancheck()
-  elif Opinion == '3':
+  elif Opinion == '3' or Opinion.lower()== 'check your challans':
     specificcheck()
   elif Opinion == '4' or Opinion.lower() == 'remove challan':
     removechallan()
