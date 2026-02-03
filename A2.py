@@ -34,15 +34,15 @@ def delete_employee():
     cursor.execute("DELETE FROM employees WHERE emp_id=%s", (emp_id,))
     conn.commit()
 
-def drop_payroll_table():
-    cursor.execute("DROP TABLE payroll")
+def add_employee():
+    cursor.execute("idk")
     conn.commit()
 
 while True:
     print("\n1. Show Employees")
     print("2. Update Salary")
     print("3. Delete Employee")
-    print("4. Drop Payroll Table")
+    print("4. Add employee")
     print("5. Exit")
 
     choice = input("Choice: ")
@@ -54,7 +54,7 @@ while True:
     elif choice == "3":
         delete_employee()
     elif choice == "4":
-        drop_payroll_table()
+        add_employee()
     elif choice == "5":
         break
     else:
